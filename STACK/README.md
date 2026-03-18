@@ -1,9 +1,38 @@
+# Generic Stack ADT in C
+## Author: João Carrilho Louro
 
-    USEFULL COMMANDS FOR THIS LIB
+A professional-grade, thread-agnostic Stack implementation using `void *` for universal data storage.
 
-        - make (compiles everything and creates an executable stack_app
+## Features
+- **Generic**: Stores any data type (int, char, structs) using void pointers.
+- **Dynamic**: Grows and shrinks in memory as needed.
+- **O(1) Operations**: Constant time for Push, Pop, and Peek.
+- **Memory Safe**: Includes a built-in size tracker and NULL guards.
+
+## Files
+- `stack.h`: Header file with the ADT interface.
+- `stack.c`: Implementation of the stack logic.
+- `Makefile`: Automation for compilation.
+
+## USEFULL COMMANDS FOR THIS LIB
+
+- make (compiles everything and creates an executable stack_app
         - ./stack_app (after 'make' to run the executable)
         - make clean (deletes all .o files and the executable stack_app)
         - valgrind --leak-check=full ./stack_app (Verifies memory leaks)
 
-        
+## Usage example
+```
+    Stack s;
+    stack_init(&s);
+    int val = 42;
+    push(&s, &val);
+    int *result = (int*)pop(&s); 
+``` 
+
+## How to Compile 
+- Run the following command in your terminal:
+```bash
+make
+```
+
