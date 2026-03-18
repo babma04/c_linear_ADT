@@ -3,7 +3,7 @@
 
 This repository is a personal library of highly reusable, generic, and memory-safe Data Types (DT) written in C. Each structure is implemented as an Abstract Data Type (ADT) using `void *` to ensure compatibility with any data format.
 
-## Project Structure
+## 📂 Project Structure
 
 Each data structure is contained within its own modular implementation:
 
@@ -11,7 +11,7 @@ Each data structure is contained within its own modular implementation:
 * *(Upcoming)* **/Queue**: A FIFO (First-In, First-Out) implementation.
 * *(Upcoming)* **/LinkedList**: A doubly-linked list for flexible data manipulation.
 
-## Design Principles
+## 🚀 Design Principles
 
 1.  **Generic Storage**: All structures use `void *` pointers to store data, allowing the library to handle `int`, `char*`, or custom `struct` types without modification.
 2.  **Encapsulation**: Internal logic is hidden in `.c` files; users interact only through defined `.h` interfaces.
