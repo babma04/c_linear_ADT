@@ -2,9 +2,6 @@
 
 #define STACK_H
 
-#include <stdint.h>
-#include <stdbool.h>
-
 // Stack structure
 typedef struct StackNode {
     void *value;

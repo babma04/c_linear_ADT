@@ -1,5 +1,5 @@
 # c_DT: A Collection of Generic Data Types in C
-## Author: João Carrilho Louro @FCUL
+## Author: João Carrilho Louro 
 
 This repository is a personal library of highly reusable, generic, and memory-safe Data Types (DT) written in C. Each structure is implemented as an Abstract Data Type (ADT) using `void *` to ensure compatibility with any data format.
 
@@ -7,8 +7,8 @@ This repository is a personal library of highly reusable, generic, and memory-sa
 
 Each data structure is contained within its own modular implementation:
 
-* **/Stack**: A LIFO (Last-In, First-Out) implementation using a dynamic linked-list.
-* *(Upcoming)* **/Queue**: A FIFO (First-In, First-Out) implementation.
+* **[Stack](./Stack)**: A LIFO (Last-In, First-Out) implementation using a dynamic linked-list.
+* **[Queue](./Queue)**: A FIFO (First-In, First-Out) implementation using a doubly-linked lest for $O(1)$ performance.
 * *(Upcoming)* **/LinkedList**: A doubly-linked list for flexible data manipulation.
 
 ## 🚀 Design Principles
@@ -24,3 +24,24 @@ Each data structure is contained within its own modular implementation:
 Copy the desired `.h` and `.c` files into your project and include the header:
 ```c
 #include "stack.h"
+#include "queue.h"
+```
+### 2. Compilation
+Each sub-folder contains a standalone `Makefile`. You can compile individual tests by navigating to the folder:
+```c
+cd STACK && make
+
+cd QUEUE && make
+```
+
+## 🧪 Memory Verification
+
+To ensure the integrity of the "Backbone," all structures are verified using Valgrind:
+```c
+valgrind --leak-check=full ./stack_test
+
+valgrind --leak-check=full ./queue_test
+```
+## 
+Developed for the Data Structures and Algorithms curriculum by João Carrilho Louro @FCUL.
+

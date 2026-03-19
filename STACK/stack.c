@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /**
- * Returns a reference to an uninitilied Stack struct
+ * Initializes the elements of the Stack structure
  */
 void stack_init (Stack *s)
 {
@@ -12,7 +12,6 @@ void stack_init (Stack *s)
 
 /**
  * Pushes an element to the top of the stack
- * @requires isEmpty(s) == 0
  * @exitCodes {1: unsuccessful memory allocation; 0: successful exit}
  */
 int push (Stack *s, void *value)
@@ -36,7 +35,7 @@ int push (Stack *s, void *value)
 */
 void* pop (Stack *s)
 {
-    // Emptyness verification
+    // Emptiness verification
     if (s->top == NULL) return NULL;
 
     StackNode *tmp = s->top;

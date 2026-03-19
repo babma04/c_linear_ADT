@@ -3,23 +3,23 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 
 # The final executable name
-TARGET = stack_test
+TARGET = queue_test
 
 # The object files (compiled versions of .c files)
-OBJS = main.o stack.o
+OBJS = main.o queue.o
 
 # Rule to create the final executable
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
 # Rule to compile main.c
-main.o: main.c stack.h
+main.o: main.c queue.h
 	$(CC) $(CFLAGS) -c main.c
 
-# Rule to compile stack.c
-stack.o: stack.c stack.h
-	$(CC) $(CFLAGS) -c stack.c
+# Rule to compile queue.c
+queue.o: queue.c queue.h
+	$(CC) $(CFLAGS) -c queue.c
 
-# Clean rule to remove compiled files
+# Clean up binaries
 clean:
 	rm -f $(OBJS) $(TARGET)

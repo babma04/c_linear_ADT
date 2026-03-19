@@ -15,24 +15,23 @@ A professional-grade, thread-agnostic Stack implementation using `void *` for un
 - `Makefile`: Automation for compilation.
 
 ## USEFULL COMMANDS FOR THIS LIB
-
-- make (compiles everything and creates an executable stack_app
-        - ./stack_app (after 'make' to run the executable)
-        - make clean (deletes all .o files and the executable stack_app)
-        - valgrind --leak-check=full ./stack_app (Verifies memory leaks)
+- `make` (compiles everything and creates an executable `stack_test`)
+- `./stack_test` (after `make` to run the executable)
+- `make clean` (deletes all .o files and the executable `stack_test`)
+- `valgrind --leak-check=full ./stack_test `(Verifies memory leaks)
 
 ## Usage example
-```
-    Stack s;
-    stack_init(&s);
-    int val = 42;
-    push(&s, &val);
-    int *result = (int*)pop(&s); 
+```c
+Stack s;
+stack_init(&s);
+int val = 42;
+push(&s, &val);
+int *result = (int*)pop(&s); 
 ``` 
 
 ## How to Compile 
 - Run the following command in your terminal:
-```bash
+```
 make
 ```
 
