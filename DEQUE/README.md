@@ -17,9 +17,10 @@ A professional-grade, thread-agnostic Deque implementation using a doubly linked
 ## USEFUL COMMANDS FOR THIS LIB
 
 - `make` (compiles everything and creates an executable `deque_test`)
+- `make run` (compiles everything and runs the `./deque_test`)
 - `./deque_test` (after 'make' to run the executable)
 - `make clean` (deletes all .o files and the executable `deque_test`)
-- `valgrind --leak-check=full ./deque_test` (Verifies memory leaks)
+- `valgrind --leak-check=full ./test/deque_test` (Verifies memory leaks)
 
 ## Usage example
 ```c

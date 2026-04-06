@@ -1,25 +1,37 @@
-# Variables for compiler and flags
+# Variables
 CC = gcc
-CFLAGS = -Wall -Wextra -g
+CFLAGS = -Wall -Wextra -g -Iinclude
 
-# The final executable name
-TARGET = stack_test
+# Directory names
+SRC_DIR = src
+INC_DIR = include
+TEST_DIR = test
+OBJ_DIR = obj
 
-# The object files (compiled versions of .c files)
-OBJS = main.o stack.o
+# Final binary in the test folder
+TARGET = $(TEST_DIR)/stack_test
 
-# Rule to create the final executable
+# Objects
+OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/stack.o
+
+all: directories $(TARGET)
+
+directories:
+	@mkdir -p $(OBJ_DIR)
+
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-# Rule to compile main.c
-main.o: main.c stack.h
-	$(CC) $(CFLAGS) -c main.c
+$(OBJ_DIR)/stack.o: $(SRC_DIR)/stack.c $(INC_DIR)/stack.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Rule to compile stack.c
-stack.o: stack.c stack.h
-	$(CC) $(CFLAGS) -c stack.c
+$(OBJ_DIR)/main.o: $(TEST_DIR)/main.c $(INC_DIR)/stack.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean rule to remove compiled files
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -rf $(OBJ_DIR) $(TARGET)
+
+run: all
+	./$(TARGET)
+
+.PHONY: all directories clean run

@@ -16,9 +16,10 @@ A professional-grade, thread-agnostic Stack implementation using `void *` for un
 
 ## USEFULL COMMANDS FOR THIS LIB
 - `make` (compiles everything and creates an executable `stack_test`)
+- `make run` (compiles everything and runs `./stack_test`)
 - `./stack_test` (after `make` to run the executable)
 - `make clean` (deletes all .o files and the executable `stack_test`)
-- `valgrind --leak-check=full ./stack_test `(Verifies memory leaks)
+- `valgrind --leak-check=full ./test/stack_test `(Verifies memory leaks)
 
 ## Usage example
 ```c

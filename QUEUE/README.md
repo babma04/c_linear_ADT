@@ -17,9 +17,10 @@ A professional-grade, thread-agnostic Queue implementation using a linked list a
 ## USEFUL COMMANDS FOR THIS LIB
 
 - `make` (compiles everything and creates an executable `queue_test`)
+- `make run` (compiles everyting and runs `./queue_test`)
 - `./queue_test` (after 'make' to run the executable)
 - `make clean` (deletes all .o files and the executable `queue_test`)
-- `valgrind --leak-check=full ./queue_test` (Verifies memory leaks)
+- `valgrind --leak-check=full ./test/queue_test` (Verifies memory leaks)
 
 ## Usage example
 ```c

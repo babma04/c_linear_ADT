@@ -1,25 +1,37 @@
-# Variables for compiler and flags
+# Variables
 CC = gcc
-CFLAGS = -Wall -Wextra -g
+CFLAGS = -Wall -Wextra -g -Iinclude
 
-# The final executable name
-TARGET = queue_test
+# Directory names
+SRC_DIR = src
+INC_DIR = include
+TEST_DIR = test
+OBJ_DIR = obj
 
-# The object files (compiled versions of .c files)
-OBJS = main.o queue.o
+# Final binary in the test folder
+TARGET = $(TEST_DIR)/queue_test
 
-# Rule to create the final executable
+# Objects
+OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/queue.o
+
+all: directories $(TARGET)
+
+directories:
+	@mkdir -p $(OBJ_DIR)
+
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-# Rule to compile main.c
-main.o: main.c queue.h
-	$(CC) $(CFLAGS) -c main.c
+$(OBJ_DIR)/queue.o: $(SRC_DIR)/queue.c $(INC_DIR)/queue.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Rule to compile queue.c
-queue.o: queue.c queue.h
-	$(CC) $(CFLAGS) -c queue.c
+$(OBJ_DIR)/main.o: $(TEST_DIR)/main.c $(INC_DIR)/queue.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean up binaries
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -rf $(OBJ_DIR) $(TARGET)
+
+run: all
+	./$(TARGET)
+
+.PHONY: all directories clean run
