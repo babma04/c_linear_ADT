@@ -1,14 +1,34 @@
 #include "../include/deque.h"
 #include <stdlib.h>
 
+// Deque structure
+typedef struct DequeNode {
+    void *value;
+    struct DequeNode *next;
+    struct DequeNode *previous;
+} DequeNode;
+
+struct Deque {
+    DequeNode *first;
+    DequeNode *last;
+    int size;
+};
+
 /**
  * Initializes the Deque structure
+ * @returns a pointer to the created Deque, or NULL if memory allocation fails
+ * @exitCodes {NULL: unsuccessful memory allocation; pointer to Deque: successful exit}
  */
-void deque_init (Deque *d)
+Deque* deque_create ()
 {
+    Deque *d = malloc(sizeof(Deque));
+    // Memory allocation verification
+    if (d == NULL) return NULL;
+
     d->first = NULL;
     d->last = NULL;
     d->size = 0;
+    return d;
 }
 
 
@@ -124,6 +144,12 @@ void* peekLast (const Deque *d)
 }
 
 /**
+ * @returns the number of elements in the deque
+ * @param d the deque to check
+ */
+int size (const Deque *d) {return d->size;};
+
+/**
  * Clears the entire deque
  */
 void deque_clear (Deque *d)
@@ -132,4 +158,17 @@ void deque_clear (Deque *d)
     {
         removeFirst(d);
     }
+}
+
+/**
+ * Destroys the deque and frees all associated memory
+ * @param d the deque to destroy
+ * @warning This function should be called when the deque is no longer needed to prevent memory leaks. It frees all nodes and the Deque structure itself.
+ */
+void deque_destroy (Deque *d)
+{
+    // Safety check for NULL pointer
+    if (d == NULL) return;
+    deque_clear(d);
+    free(d); // Free the Deque structure itself
 }

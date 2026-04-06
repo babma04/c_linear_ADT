@@ -2,37 +2,24 @@
 
 #define DEQUE_H
 
-// Deque structure
-typedef struct DequeNode {
-    void *value;
-    struct DequeNode *next;
-    struct DequeNode *previous;
-} DequeNode;
-
-typedef struct {
-    DequeNode *first;
-    DequeNode *last;
-    int size;
-} Deque;
+// Structure prototypes
+typedef struct Deque Deque;
 
 // Funtions Prototypes
-void deque_init (Deque *d);
+Deque* deque_create ();
 int addFirst (Deque *d, void *value);
 int addLast (Deque *d, void *value);
 void* removeFirst (Deque *d);
 void* removeLast (Deque *d);
 void* peekFirst (const Deque *d);
 void* peekLast (const Deque *d);
+int size (const Deque *d);
 void deque_clear (Deque *d);
-/**
- * @returns the number of elements in the deque
- * @param d the deque to check
- */
-static inline int size (Deque *d) {return d->size;};
+void deque_destroy (Deque *d);
 /**
  * Checks if the deque is empty
  * @param d the deque to check
  * @returns 1 if the deque is empty, 0 otherwise
  */
-static inline int isEmpty (const Deque *d) {return d->size == 0;};
+static inline int isEmpty (const Deque *d) {return size(d) == 0;};
 #endif // DEQUE_H
