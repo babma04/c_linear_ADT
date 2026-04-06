@@ -24,11 +24,12 @@ A professional-grade, thread-agnostic Queue implementation using a linked list a
 
 ## Usage example
 ```c
-Queue q;
-queue_init(&q);
+Queue *q = queue_create();
 int val = 42;
-enqueue(&q, &val);
-int *result = (int*)dequeue(&q);
+enqueue(q, &val);
+int *result = (int*)dequeue(q);
+queue_destroy(q);
+
 ```
 
 ## How to Compile

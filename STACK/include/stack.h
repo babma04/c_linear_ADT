@@ -2,29 +2,17 @@
 
 #define STACK_H
 
-// Stack structure
-typedef struct StackNode {
-    void *value;
-    struct StackNode *next;
-} StackNode;
-
-// Main Handler of the stack
-typedef struct {
-    StackNode *top;
-    int size;
-} Stack;
+// Structure prototype
+typedef struct Stack Stack;
 
 // Function Prototypes
-void stack_init(Stack *s);
+Stack* stack_create();
 int push(Stack *s, void *value);
 void* pop(Stack *s);
 void* peek(const Stack *s);
+int size(const Stack *s);
 void stack_clear(Stack *s);
-/**
- * @returns the number of elements in the stack
- * @param s pointer to the stack
- */
-static inline int size (const Stack *s) {return s->size;};
+void stack_destroy(Stack *s);
 /**
  * Checks if the stack is empty
  * @param s pointer to the stack

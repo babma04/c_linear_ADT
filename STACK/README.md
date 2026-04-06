@@ -23,11 +23,11 @@ A professional-grade, thread-agnostic Stack implementation using `void *` for un
 
 ## Usage example
 ```c
-Stack s;
-stack_init(&s);
+Stack *s = stack_create();
 int val = 42;
 push(&s, &val);
-int *result = (int*)pop(&s); 
+int *result = (int*)pop(&s);
+stack_destroy(s); 
 ``` 
 
 ## How to Compile 

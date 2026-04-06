@@ -61,12 +61,10 @@ int main() {
     }
 
     printf("\n--- Phase 4: Final Cleanup ---\n");
-    // 1. Clear all nodes to free DequeNode memory
+    // Clear all nodes to free DequeNode memory
     deque_clear(d);
-    
-    // 2. Manual free of the manager struct since deque_destroy isn't implemented
-    // This is critical because deque_create() used malloc() internally.
-    free(d); 
+    // Now free the Deque structure itself
+    deque_destroy(d);
     
     printf("Deque cleared and manager memory freed.\n");
 

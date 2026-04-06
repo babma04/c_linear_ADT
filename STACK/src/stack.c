@@ -1,13 +1,33 @@
 #include "../include/stack.h"
 #include <stdlib.h>
 
+// Stack structure
+typedef struct StackNode {
+    void *value;
+    struct StackNode *next;
+} StackNode;
+
+// Main Handler of the stack
+struct Stack {
+    StackNode *top;
+    int size;
+};
+
+
 /**
- * Initializes the elements of the Stack structure
+ * Initializes the stack 
+ * @param s pointer to the stack
+ * @returns pointer to the initialized stack, or NULL if memory allocation fails
+ * @errorCodes {NULL: memory allocation failure; valid pointer: successful initialization}
  */
-void stack_init (Stack *s)
-{
+Stack* stack_create() {
+    Stack *s = malloc(sizeof(Stack));
+    // Memory allocation safety fallback
+    if (s == NULL) return NULL;
+
     s->top = NULL;
     s->size = 0;
+    return s;
 }
 
 /**
@@ -50,7 +70,6 @@ void* pop (Stack *s)
     return val;
 }
 
-
 /**
  * @returns the top value in the stack
  * @requires isEmpty(s) == 0
@@ -64,6 +83,12 @@ void* peek (const Stack *s)
 }
 
 /**
+ * @returns the number of elements in the stack
+ * @param s pointer to the stack
+ */
+int size(const Stack *s) {return s->size;};
+
+/**
  * Clears the entire stack
  */ 
 void stack_clear (Stack *s)
@@ -74,3 +99,15 @@ void stack_clear (Stack *s)
     }
 }
 
+/**
+ * Destroys the stack and frees all associated memory
+ * @warning stack_clear(s) should be called before this function to avoid memory leaks
+ */
+void stack_destroy (Stack *s)
+{
+    // Safety check for NULL pointer
+    if (s == NULL) return;
+    // Safety check for already empty stack
+    stack_clear(s); 
+    free(s); 
+}

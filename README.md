@@ -14,9 +14,10 @@ Each data structure is contained within its own modular implementation:
 ## 🚀 Design Principles
 
 1.  **Generic Storage**: All structures use `void *` pointers to store data, allowing the library to handle `int`, `char*`, or custom `struct` types without modification.
-2.  **Encapsulation**: Internal logic is hidden; users interact only through defined headers in the `include/` directories.
-3.  **Memory Safety**: Every structure includes size tracking and NULL-guards and dedicated `_clear` functions to prevent memory leaks and segmentation faults.
-4.  **Performance**: Core operations (Push/Pop/Enqueue/Dequeue) are optimized for constant time complexity.
+2.  **Opaque pointers**: All ADT are defined through opaque pointers to hidden structures defined inside the .c files for maximum abstraction.
+3.  **Encapsulation**: Internal logic is hidden; users interact only through defined headers in the `include/` directories.
+4.  **Memory Safety**: Every structure includes size tracking and NULL-guards and dedicated `_clear` functions to prevent memory leaks and segmentation faults.
+5.  **Performance**: Core operations (Push/Pop/Enqueue/Dequeue) are optimized for constant time complexity.
 
 ## 🛠️ How to Use
 

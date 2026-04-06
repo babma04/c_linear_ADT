@@ -1,14 +1,36 @@
 #include "../include/queue.h"
 #include <stdlib.h>
 
+// Queue structure
+typedef struct QueueNode {
+    void *value;
+    struct QueueNode *next;
+    struct QueueNode *previous;
+} QueueNode;
+
+// Main handler of the queue
+struct Queue {
+    QueueNode *first;
+    // Optional (might not be available)
+    QueueNode *last;
+    int size;
+};
+
 /**
- * Initializes the elements of the Queue structure
+ * Initializes the queue
+ * @exitCode {1: unsuccessful memory allocation; 0: successful exit}
+ * @warning This function must be called before any other operation on the queue
  */
-void queue_init (Queue *q)
+Queue* queue_create()
 {
+    Queue *q = malloc(sizeof(Queue));
+    // Memory allocation verification
+    if (q == NULL) return NULL;
+
     q->first = NULL;
     q->last = NULL;
     q->size = 0;
+    return q;
 }
 
 /**
@@ -68,6 +90,12 @@ void* peek (const Queue *q)
 }
 
 /**
+ * @returns the size of the queue.
+ * @param q The queue to be checked.
+ */
+int size (const Queue *q) {return q->size;};
+
+/**
  * Clears the entire queue
  */
 void queue_clear (Queue *q)
@@ -76,4 +104,18 @@ void queue_clear (Queue *q)
     {
         dequeue(q);
     }
+}
+
+/**
+ * Destroys the queue and frees all allocated memory
+ * @param q The queue to be destroyed
+ * @warning After calling this function, the queue pointer should not be used anymore
+ */
+void queue_destroy (Queue *q)
+{
+    // Null pointer verification
+    if (q == NULL) return;
+    // Clear the queue and free the memory allocated for the queue structure
+    queue_clear(q);
+    free(q);
 }

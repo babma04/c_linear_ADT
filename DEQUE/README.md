@@ -24,11 +24,11 @@ A professional-grade, thread-agnostic Deque implementation using a doubly linked
 
 ## Usage example
 ```c
-Deque d;
-deque_init(&q);
+Deque *d = deque_create();
 int val = 42;
-addFirst(&q, &val);
-int *result = (int*)removeFirst(&q);
+addFirst(d, &val);
+int *result = (int*)removeFirst(d);
+deque_destroy(d);
 ```
 
 ## How to Compile

@@ -151,6 +151,8 @@ int size (const Deque *d) {return d->size;};
 
 /**
  * Clears the entire deque
+ * @param d the deque to clear
+ * @warning This function removes all elements from the deque but does not free the Deque structure itself. Use deque_destroy to free the structure after clearing if the deque is no longer needed.
  */
 void deque_clear (Deque *d)
 {
@@ -170,5 +172,5 @@ void deque_destroy (Deque *d)
     // Safety check for NULL pointer
     if (d == NULL) return;
     deque_clear(d);
-    free(d); // Free the Deque structure itself
+    free(d);
 }
