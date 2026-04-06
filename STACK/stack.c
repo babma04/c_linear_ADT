@@ -12,10 +12,12 @@ void stack_init (Stack *s)
 
 /**
  * Pushes an element to the top of the stack
- * @exitCodes {1: unsuccessful memory allocation; 0: successful exit}
+ * @exitCodes {-1: invalid NULL value passed as argumment; 1: unsucessful memory allocation; 0: sucessful exit}
  */
 int push (Stack *s, void *value)
 {
+    if (value == NULL) return -1;
+
     StackNode *new_node = malloc(sizeof(StackNode));
 
     // Memory allocation safety fallback
@@ -48,16 +50,9 @@ void* pop (Stack *s)
     return val;
 }
 
-/**
- * Verifies if the given Stack is empty.
- */
-int isEmpty (const Stack *s)
-{
-    return s->size == 0;
-}
 
 /**
- * Returns the top value in the stack
+ * @returns the top value in the stack
  * @requires isEmpty(s) == 0
  * @warning returns NULL if the stack is empty
  */

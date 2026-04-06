@@ -3,22 +3,22 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 
 # The final executable name
-TARGET = queue_test
+TARGET = deque_test
 
 # The object files (compiled versions of .c files)
-OBJS = main.o queue.o
+OBJS = main.o deque.o
 
 # Rule to create the final executable
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-# Rule to compile main.c
-main.o: main.c queue.h
-	$(CC) $(CFLAGS) -c main.c
+# Rule to compile deque.c
+deque.o: deque.c deque.h
+	$(CC) $(CFLAGS) -c deque.c
 
-# Rule to compile queue.c
-queue.o: queue.c queue.h
-	$(CC) $(CFLAGS) -c queue.c
+# Rule to compile main.c
+main.o: main.c deque.h
+	$(CC) $(CFLAGS) -c main.c
 
 # Clean up binaries
 clean:

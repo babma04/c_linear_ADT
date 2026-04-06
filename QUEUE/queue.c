@@ -57,14 +57,6 @@ void* dequeue (Queue *q)
 }
 
 /**
- * Verifies if the given Queue is empty
- */
-int isEmpty (const Queue *q)
-{
-    return q->size == 0;
-}
-
-/**
  * Returns the first value of the queue
  * @requires isEmpty(q) == 0
  * @warning returns NULL if the queue is empty

@@ -1,11 +1,11 @@
 # Generic Queue ADT in C
 ## Author: João Carrilho Louro
 
-A professional-grade, thread-agnostic Queue implementation using a doubly linked list and `void *` for universal data storage.
+A professional-grade, thread-agnostic Queue implementation using a linked list and `void *` for universal data storage.
 
 ## Features
 - **Generic**: Stores any data type (int, char, structs) using void pointers.
-- **Dynamic**: Grows and shrinks in memory as needed using a doubly linked structure.
+- **Dynamic**: Grows and shrinks in memory as needed using a linked structure.
 - **O(1) Operations**: Constant time for Enqueue, Dequeue, and Peek.
 - **Memory Safe**: Includes a built-in size tracker, NULL-safety guards, and a dedicated clearing function.
 
