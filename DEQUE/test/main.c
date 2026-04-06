@@ -68,5 +68,49 @@ int main() {
     
     printf("Deque cleared and manager memory freed.\n");
 
+    printf("\n--- Phase 5: Iterator Functionality ---\n");
+    Deque *d2 = deque_create();
+    
+    // Setup: Add some mixed data
+    int v01 = 100, v02 = 200;
+    char *msg = "Hello Iterator";
+    
+    addLast(d2, &v01);
+    addLast(d2, msg);
+    addLast(d2, &v02);
+    printf("Deque size before iteration: %d\n", size(d2));
+
+    // 1. Get the iterator (The "Bookmark")
+    DequeIterator *it = deque_iterator_create(d2);
+    
+    if (it == NULL) {
+        printf("Failed to create iterator!\n");
+    } else {
+        int count = 1;
+        // 2. Loop while there is a next element
+        while (deque_iterator_has_next(it)) {
+            // 3. Get data and advance the bookmark
+            void *data = deque_iterator_next(it);
+            
+            if (data == msg) {
+                printf("Item %d: [String] %s\n", count++, (char*)data);
+            } else {
+                printf("Item %d: [Int]    %d\n", count++, *(int*)data);
+            }
+        }
+        
+        // 4. Always destroy the iterator (it's a heap object!)
+        deque_iterator_destroy(it);
+    }
+
+    // CRITICAL CHECK: The Deque should still have all 3 items!
+    printf("Deque size after iteration: %d (Expected 3)\n", size(d2));
+
+    if (size(d2) == 3) {
+        printf("SUCCESS: Iterator is non-destructive.\n");
+    }
+
+    deque_destroy(d2);
+    printf("Test completed. All resources cleaned up.\n");
     return 0;
 }

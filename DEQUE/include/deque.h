@@ -22,4 +22,11 @@ void deque_destroy (Deque *d);
  * @returns 1 if the deque is empty, 0 otherwise
  */
 static inline int isEmpty (const Deque *d) {return size(d) == 0;};
+
+// Iterator structure and functions
+typedef struct DequeIterator DequeIterator;
+DequeIterator* deque_iterator_create (const Deque *d);
+void* deque_iterator_next (DequeIterator *it);
+int deque_iterator_has_next (const DequeIterator *it);
+void deque_iterator_destroy (DequeIterator *it);
 #endif // DEQUE_H

@@ -19,4 +19,11 @@ void stack_destroy(Stack *s);
  * @returns 1 if the stack is empty, 0 otherwise
  */
 static inline int isEmpty(const Stack *s) {return size(s) == 0;};
+
+// Iterator structure and functions
+typedef struct StackIterator StackIterator;
+StackIterator* stack_iterator_create(const Stack *s);
+void* stack_iterator_next(StackIterator *it);
+int stack_iterator_has_next(const StackIterator *it);
+void stack_iterator_destroy(StackIterator *it);
 #endif // STACK_H

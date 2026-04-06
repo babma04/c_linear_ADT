@@ -22,6 +22,7 @@ A professional-grade, thread-agnostic Stack implementation using `void *` for un
 - `valgrind --leak-check=full ./test/stack_test `(Verifies memory leaks)
 
 ## Usage example
+### Stack:
 ```c
 Stack *s = stack_create();
 int val = 42;
@@ -29,6 +30,23 @@ push(&s, &val);
 int *result = (int*)pop(&s);
 stack_destroy(s); 
 ``` 
+
+### Stack iterator:
+```c
+Stack *s = stack_create();
+int v1 = 1, v2 = 2, v3 = 3;
+push (s, &v1);
+push (s, &v2);
+push (s, &v3);
+
+StackIterator *it = stack_iterator_create();
+while (stack_iterator_has_next(it))
+{
+    int *val = (int*) stack_iterator_next(it);
+}
+stack_iterator_destroy(it);
+```
+
 
 ## How to Compile 
 - Run the following command in your terminal:

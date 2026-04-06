@@ -174,3 +174,66 @@ void deque_destroy (Deque *d)
     deque_clear(d);
     free(d);
 }
+
+//----------------------------------- Deque Iterator ------------------------------------
+
+// Deque iterator structure
+struct DequeIterator {
+    const Deque *deque;
+    DequeNode *current;
+};
+
+/**
+ * Creates an iterator for the given deque
+ * @param d the deque to create an iterator for
+ * @returns a pointer to the created DequeIterator, or NULL if memory allocation fails or if the provided deque pointer is NULL
+ * @exitCodes {NULL: unsuccessful memory allocation or invalid NULL deque pointer; pointer to DequeIterator: successful exit}
+ * @warning The returned iterator should be destroyed using deque_iterator_destroy to free associated memory when it is no longer needed.
+ */
+DequeIterator* deque_iterator_create(const Deque *d)
+{
+    if (d == NULL) return NULL;
+
+    DequeIterator *it = malloc(sizeof(DequeIterator));
+    if (it == NULL) return NULL;
+
+    it->deque = d;
+    it->current = d->first;
+    return it;
+}
+
+/**
+ * Returns the next element in the deque using the iterator
+ * @param it the iterator to use for retrieving the next element
+ * @returns the value of the next element, or NULL if there are no more elements or if the provided iterator pointer is NULL
+ * @exitCodes {NULL: no more elements or invalid NULL iterator pointer; value of next element: successful exit}
+ */
+int deque_iterator_has_next (const DequeIterator *it)
+{
+    return (it != NULL && it->current != NULL);
+}
+
+/**
+ * Returns the next element in the deque using the iterator
+ * @param it the iterator to use for retrieving the next element
+ * @returns the value of the next element, or NULL if there are no more elements or if the provided iterator pointer is NULL
+ * @exitCodes {NULL: no more elements or invalid NULL iterator pointer; value of next element: successful exit}
+ */
+void* deque_iterator_next (DequeIterator *it)
+{
+    if (it == NULL || it->current == NULL) return NULL;
+    void *value = it->current->value;
+    it->current = it->current->next;
+    return value;
+}
+
+/**
+ * Destroys the deque iterator and frees all associated memory
+ * @param it the iterator to destroy
+ * @warning This function should be called when the iterator is no longer needed to prevent memory leaks. It frees the DequeIterator structure itself. Note that it does not affect the underlying deque or its elements.
+ */
+void deque_iterator_destroy (DequeIterator *it)
+{
+    if (it == NULL) return;
+    free(it);
+}

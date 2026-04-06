@@ -1,0 +1,36 @@
+# --- Compilation Outputs ---
+*.o
+*.obj
+*.out
+*.exe
+*.a
+*.so
+*.lib
+*.dll
+
+# --- Executables ---
+# If you name your test binaries consistently, add them here.
+# Example: main, test_deque, test_stack, test_queue
+main
+test_*
+bin/
+
+# --- IDEs and Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# --- Debugging & Profiling ---
+gmon.out
+.gdb_history
+*.dSYM/
+vgcore.*
+
+# --- Build Systems ---
+# If you eventually use CMake
+build/
+CMakeFiles/
+CMakeCache.txt

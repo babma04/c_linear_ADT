@@ -61,5 +61,31 @@ int main() {
     queue_destroy(q);
     printf("Queue structure and nodes destroyed successfully.\n");
 
+    Queue *q1 = queue_create();
+    
+    char *names[] = {"Alice", "Bob", "Charlie", "Dave"};
+    for (int i = 0; i < 4; i++) {
+        enqueue(q1, names[i]);
+    }
+
+    printf("--- Phase 5: Queue Iterator Test ---\n");
+    printf("Queue size before iteration: %d\n", size(q1));
+    QueueIterator *it = queue_iterator_create(q1);
+    if (it != NULL) {
+        printf("Queue Order (Front to Rear): ");
+        while (queue_iterator_has_next(it)) {
+            char *name = (char*)queue_iterator_next(it);
+            printf("[%s] ", name);
+        }
+        printf("\n");
+        queue_iterator_destroy(it);
+    }
+
+    // Verification: The queue should still have all elements
+    printf("Queue size after iteration: %d (Expected 4)\n", size(q1));
+    printf("Next in line (peek): %s (Expected Alice)\n", (char*)peek(q1));
+
+    queue_destroy(q1);
+    printf("Second queue destroyed successfully.\n");
     return 0;
 }

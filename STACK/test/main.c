@@ -61,5 +61,32 @@ int main() {
     stack_destroy(s);
     printf("Stack destroyed memory-safely.\n");
 
+    Stack *s2 = stack_create();
+    
+    int v01 = 10, v02 = 20, v03 = 30;
+    push(s2, &v01);
+    push(s2, &v02);
+    push(s2, &v03); // Stack is now [30 (top), 20, 10]
+
+    printf("--- Phase 5: Stack Iterator Test ---\n");
+    printf("Stack size before iteration: %d\n", size(s2));
+
+    StackIterator *it = stack_iterator_create(s2);
+    if (it != NULL) {
+        printf("Stack contents (Top to Bottom): ");
+        while (stack_iterator_has_next(it)) {
+            int *val = (int*)stack_iterator_next(it);
+            printf("[%d] ", *val);
+        }
+        printf("\n");
+        stack_iterator_destroy(it);
+    }
+
+    // Validation: Check if the stack is still full
+    printf("Stack size after iteration: %d (Expected 3)\n", size(s2));
+    printf("Top still exists: %d (Expected 30)\n", *(int*)peek(s2));
+
+    stack_destroy(s2);
+    printf("Second stack destroyed successfully.\n");
     return 0;
 }

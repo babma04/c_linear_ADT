@@ -119,3 +119,64 @@ void queue_destroy (Queue *q)
     queue_clear(q);
     free(q);
 }
+
+//------------------------------------ Queue Iterator ------------------------------------
+
+// Iterator structure
+struct QueueIterator {
+    const Queue *queue;
+    QueueNode *current;
+};
+
+/**
+ * Creates an iterator for the given queue
+ * @param q The queue to be iterated over
+ * @returns A pointer to the created iterator, or NULL if memory allocation fails
+ * @warning The iterator should be destroyed using queue_iterator_destroy to free allocated memory
+ * @exitCode {1: unsuccessful memory allocation; 0: successful exit}
+ */
+QueueIterator* queue_iterator_create (const Queue *q)
+{
+    QueueIterator *it = malloc(sizeof(QueueIterator));
+    if (it == NULL) return NULL;
+    
+    it->queue = q;
+    it->current = q->first;
+    return it;
+}
+
+/**
+ * Checks if the iterator has more elements to iterate over
+ * @param it The iterator to be checked
+ * @returns 1 if there are more elements, 0 otherwise
+ */
+int queue_iterator_has_next (const QueueIterator *it)
+{
+    return (it != NULL && it->current != NULL);
+}
+
+/**
+ * Returns the next element in the iteration and advances the iterator
+ * @param it The iterator to be advanced
+ * @returns A pointer to the next element, or NULL if there are no more elements
+ * @warning The caller is responsible for ensuring that the iterator is valid and has more elements before calling this function
+ */
+void* queue_iterator_next (QueueIterator *it)
+{
+    if (it == NULL || it->current == NULL) return NULL; 
+    
+    void *value = it->current->value;
+    it->current = it->current->next;
+    return value;
+}
+
+/**
+ * Destroys the iterator and frees allocated memory
+ * @param it The iterator to be destroyed
+ * @warning After calling this function, the iterator pointer should not be used anymore
+ */
+void queue_iterator_destroy (QueueIterator *it)
+{
+    if (it == NULL) return;
+    free(it);
+}

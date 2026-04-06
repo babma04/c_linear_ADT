@@ -23,12 +23,32 @@ A professional-grade, thread-agnostic Deque implementation using a doubly linked
 - `valgrind --leak-check=full ./test/deque_test` (Verifies memory leaks)
 
 ## Usage example
+### Deque:
 ```c
 Deque *d = deque_create();
 int val = 42;
 addFirst(d, &val);
 int *result = (int*)removeFirst(d);
 deque_destroy(d);
+```
+
+### Deque iterator:
+```c
+Deque *d = deque_create();
+int v1 = 100, v2 = 200;
+addLast (d, &v1);
+addLast(d, &v2);
+
+DequeIterator *it = deque_iterator_create();
+if (it == NULL) printf("Fail");
+
+int counter = 0;
+while (deque_iterator_has_next(it))
+{
+    void *data = deque_iterator_next(it);
+    counter++;
+}
+deque_iterator_destroy(it);
 ```
 
 ## How to Compile

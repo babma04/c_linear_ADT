@@ -23,13 +23,31 @@ A professional-grade, thread-agnostic Queue implementation using a linked list a
 - `valgrind --leak-check=full ./test/queue_test` (Verifies memory leaks)
 
 ## Usage example
+### Queue:
 ```c
 Queue *q = queue_create();
 int val = 42;
 enqueue(q, &val);
 int *result = (int*)dequeue(q);
 queue_destroy(q);
+```
 
+### Queue iterator:
+```c
+Queue *q = queue_create();
+int v1 = 1, v2 = 2, v3 = 3;
+enqueue(q, &v1);
+enqueue(q, &v2);
+enqueue(q, &v3);
+
+QueueIterator *it = queue_iterator_create();
+int counter = 0;
+while (queue_iterator_has_next(it))
+{
+    queue_iterator_next(it);
+    counter++;
+}
+queue_iterator_destroy(it);
 ```
 
 ## How to Compile

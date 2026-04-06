@@ -18,6 +18,7 @@ Each data structure is contained within its own modular implementation:
 3.  **Encapsulation**: Internal logic is hidden; users interact only through defined headers in the `include/` directories.
 4.  **Memory Safety**: Every structure includes size tracking and NULL-guards and dedicated `_clear` functions to prevent memory leaks and segmentation faults.
 5.  **Performance**: Core operations (Push/Pop/Enqueue/Dequeue) are optimized for constant time complexity.
+6.  **Iteration**: Each ADT has a costume iterator with specific methods for a simpler iteration over the base ADT.
 
 ## 🛠️ How to Use
 

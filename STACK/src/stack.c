@@ -111,3 +111,60 @@ void stack_destroy (Stack *s)
     stack_clear(s); 
     free(s); 
 }
+
+//----------------------------------- Stack Iterator -------------------------------------
+
+// Iterator structure
+struct StackIterator {
+    Stack *stack;
+    StackNode *current;
+};
+
+/**
+ * Creates an iterator for the given stack
+ * @param s pointer to the stack
+ * @returns pointer to the created iterator, or NULL if memory allocation fails
+ * @errorCodes {NULL: memory allocation failure; valid pointer: successful creation}
+ */
+StackIterator* stack_iterator_create(const Stack *s) 
+{
+    StackIterator *it = malloc(sizeof(StackIterator));
+    if (it == NULL) return NULL;
+
+    it->stack = (Stack *)s; // Cast away const-ness for internal use
+    it->current = s->top;
+    return it;
+}
+
+/**
+ * Checks if there are more elements to iterate over
+ * @param it pointer to the stack iterator
+ * @returns 1 if there are more elements, 0 otherwise
+ */
+int stack_iterator_has_next(const StackIterator *it) 
+{
+    return (it != NULL && it->current != NULL);
+}
+
+/**
+ * Returns the next element in the iteration
+ * @param it pointer to the stack iterator
+ * @returns pointer to the next element, or NULL if there are no more elements
+ */
+void* stack_iterator_next(StackIterator *it)
+{
+    if (it == NULL || it->current == NULL) return NULL;
+
+    void *value = it->current->value;
+    it->current = it->current->next;
+    return value;
+}
+
+/**
+ * Destroys the stack iterator and frees all associated memory
+ * @param it pointer to the stack iterator
+ */void stack_iterator_destroy(StackIterator *it) 
+{
+    if (it == NULL) return;
+    free(it);
+}
