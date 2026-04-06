@@ -44,6 +44,9 @@ cd DEQUE && make
 You can also compile the entire library at once using the Master Makefile in the root directory:
 ```bash
 make
+make run 
+make valgrind
+make clean
 ```
 
 
