@@ -1,4 +1,4 @@
-# c_DT: A Collection of Generic Data Types in C
+# c_linear_ADT: A Collection of Generic Data Types in C
 ## Author: João Carrilho Louro 
 
 This repository is a personal library of highly reusable, generic, and memory-safe Data Types (DT) written in C. Each structure is implemented as an Abstract Data Type (ADT) using `void *` to ensure compatibility with any data format.
