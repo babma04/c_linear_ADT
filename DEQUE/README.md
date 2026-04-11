@@ -18,9 +18,27 @@ A professional-grade, thread-agnostic Deque implementation using a doubly linked
 
 - `make` (compiles everything and creates an executable `deque_test`)
 - `make run` (compiles everything and runs the `./deque_test`)
-- `./deque_test` (after 'make' to run the executable)
+- `./deque_test` (after any `make` command to run the executable)
 - `make clean` (deletes all .o files and the executable `deque_test`)
 - `valgrind --leak-check=full ./test/deque_test` (Verifies memory leaks)
+
+## API
+
+### Deque operations:
+- **Deque* deque_create**: Creates a new Deque struct and hands out its pointer;
+- **int addFirst / addLast**: Adds an element to the start/end of the deque;
+- **void* removeFirst / removeLast**: Removes an element from the front / end of the deque and hands out a pointer to its value in memory;
+- **void* peekFirst / peekLast**: Hands out a pointer to the value in the front / end position of the deque in memory;
+- **int size**: Returns the current size of the deque;
+- **void deque_clear**: Removes all values from the deque;
+- **void deque_destroy**: Removes all values from the deque and destroys the structure holding it;
+- **int isEmpty**: Verifies if the deque is empty or not;
+
+### Iterator related operations:
+- **DequeIterator* deque_iterator_create**: Creates a new DequeIterator struct and hands out its pointer;
+- **void* deque_iterator_next**: Verifies if there's a next element in the iterator cicle;
+- **int deque_iterator_has_next**: Returns a pointer for the value in memory of the next value and moves the iterator to it;
+- **void deque_iterator_destroy**: Destroys the iterator structure;
 
 ## Usage example
 ### Deque:

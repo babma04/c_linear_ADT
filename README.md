@@ -3,7 +3,7 @@
 
 This repository is a personal library of highly reusable, generic, and memory-safe Data Types (DT) written in C. Each structure is implemented as an Abstract Data Type (ADT) using `void *` to ensure compatibility with any data format.
 
-## 📂 Project Structure
+## Project Structure
 
 Each data structure is contained within its own modular implementation:
 
@@ -11,7 +11,7 @@ Each data structure is contained within its own modular implementation:
 * **[Queue](./QUEUE)**: A FIFO (First-In, First-Out) implementation using a dynamic linked lists for $O(1)$ performance.
 * **[Deque](./DEQUE)**: A Double-Ended Queue supporting $O(1)$ additions and removals at both ends implemented using dounly-linked lists.
 
-## 🚀 Design Principles
+## Design Principles
 
 1.  **Generic Storage**: All structures use `void *` pointers to store data, allowing the library to handle `int`, `char*`, or custom `struct` types without modification.
 2.  **Opaque pointers**: All ADT are defined through opaque pointers to hidden structures defined inside the .c files for maximum abstraction.
@@ -20,7 +20,7 @@ Each data structure is contained within its own modular implementation:
 5.  **Performance**: Core operations (Push/Pop/Enqueue/Dequeue) are optimized for constant time complexity.
 6.  **Iteration**: Each ADT has a costume iterator with specific methods for a simpler iteration over the base ADT.
 
-## 🛠️ How to Use
+## How to Use
 
 ### 1. Inclusion
 Include the desired header in your project. Our Makefiles use the -Iinclude flag to simplify this:
@@ -39,18 +39,9 @@ cd QUEUE && make
 
 cd DEQUE && make
 ```
+There are also more compilation related commands explained in each directory README
 
-#### Master compilation:
-You can also compile the entire library at once using the Master Makefile in the root directory:
-```bash
-make
-make run 
-make valgrind
-make clean
-```
-
-
-## 🧪 Memory Verification
+## Memory Verification
 
 To ensure the integrity of the "Backbone," all structures are verified using Valgrind:
 ```bash

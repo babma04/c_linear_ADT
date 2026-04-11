@@ -18,9 +18,28 @@ A professional-grade, thread-agnostic Queue implementation using a linked list a
 
 - `make` (compiles everything and creates an executable `queue_test`)
 - `make run` (compiles everyting and runs `./queue_test`)
-- `./queue_test` (after 'make' to run the executable)
+- `./queue_test` (after any `make` command to run the executable)
 - `make clean` (deletes all .o files and the executable `queue_test`)
 - `valgrind --leak-check=full ./test/queue_test` (Verifies memory leaks)
+
+## API
+
+### Queue operations:
+- **Queue* queue_create**: Creates a new Queue struct and hands out its pointer;
+- **int enqueue**: Adds an element to the end of the queue;
+- **void* dequeue**: Removes an element from the front of the queue and returns the pointer to its value in memory;
+- **void* peek**: Returns a pointer to the value in the front position of the queue in memory;
+- **int size**: Returns the current size of the queue;
+- **void queue_clear**: Removes all values from the queue;
+- **void queue_destroy**: Removes all values from the queue and destroys the structure holding it;
+- **int isEmpty**: Verifies if the queue is empty or not;
+
+### Iterator related operations:
+- **QueueIterator* queue_iterator_create**: Creates a new QueueIterator struct and hands out its pointer;
+- **int queue_iterator_has_next**: Verifies if there's a next element in the iterator cicle;
+- **void* queue_iterator_next**: Returns a pointer for the value in memory of the next value and moves the iterator to it;
+- **void queue_iterator_destroy**: Destroys the iterator structure;
+
 
 ## Usage example
 ### Queue:
